@@ -1,0 +1,47 @@
+<div class="flex justify-center">
+    <div class="w-7/10 flex flex-col justify-center">
+        <div>
+            <button (click)="voltarParaPaginaInicial()" class="bg-blue-400 p-2 rounded-lg hover:cursor-pointer hover:bg-blue-500">Voltar</button>
+        </div>
+        <h2 class="text-3xl">{{ sessao.filme }}</h2>
+        <h3>Horário: {{ sessao.dataHora }}</h3>
+        <p>Sinopse: {{ sessao.sinopseFilme }}</p>
+        @defer {
+        <div class="flex flex-row flex-wrap mb-5">
+            @for (assento of assentos; track assento.id) {
+            @if (assento.reservado) {
+            <p class="bg-gray-300 text-lg p-2 m-2 rounded-full w-11 text-center text-gray-600 hover:cursor-not-allowed">
+                {{ assento.numeroAssento }}</p>
+            } @else {
+            <p class="bg-gray-300 text-lg p-2 m-2 rounded-full w-11 text-center hover:cursor-pointer hover:bg-gray-400"
+                (click)="reservarAssento(assento.id)">{{ assento.numeroAssento }}</p>
+            }
+            }
+        </div>
+        <div class="flex flex-col items-center">
+            <h4 class="text-lg font-semibold">Valores dos ingressos</h4>
+            <table class="table-auto border-collapse w-2xl">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="border border-gray-300">Dias</th>
+                        <th class="border border-gray-300">Inteira</th>
+                        <th class="border border-gray-300">Meia</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr>
+                        <td class="border border-gray-300 p-2">Segunda a Sexta</td>
+                        <td class="border border-gray-300 p-2">R$ 36</td>
+                        <td class="border border-gray-300 p-2">R$ 18</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2">Sábado, Domingos, Feriados e Pré-estreias</td>
+                        <td class="border border-gray-300 p-2">R$ 44</td>
+                        <td class="border border-gray-300 p-2">R$ 22</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        }
+    </div>
+</div>

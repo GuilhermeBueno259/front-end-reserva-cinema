@@ -1,0 +1,18 @@
+<div class="flex items-center flex-col">
+  <h2 class="text-4xl">Sessões</h2>
+  <div class="flex flex-row">
+    @defer {
+      @for (sessao of sessoes; track sessao.id) {
+        <div class="border border-gray-300 rounded-lg m-2">
+          <div class="p-4">
+            <h3>Filme: {{ sessao.filme }}</h3>
+            <p>Data/hora: {{ sessao.dataHora }}</p>
+          </div>
+          <button class="text-center border-t border-gray-300 w-full mt-4 hover:bg-gray-300 p-4 rounded-b-lg" (click)="visualizarSessao(sessao.id)">Reservar assento</button>
+        </div>
+      }
+    } @loading {
+      <p>Carregando sessões</p>
+    }
+  </div>
+</div>
